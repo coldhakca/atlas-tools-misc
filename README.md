@@ -4,6 +4,10 @@ misc tools that use data from RIPE atlas
 
 ## tools and usage
 
+*	SSL Measurement
+*	Traceroute data visualization (coming soon)
+*	Maxmind and cymruwhois data integration (coming soon)
+
 ### SSL Measurement
 
 `atlas-examine-ssl-measurement.py` lets you examine an SSL measurement in detail, printing out the `dst_addr` and details of the certificate chain as returned by the probe.
