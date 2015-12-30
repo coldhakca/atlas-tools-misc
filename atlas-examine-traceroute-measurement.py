@@ -12,8 +12,12 @@ if __name__ == "__main__":
   import urllib
   import OpenSSL
   import sys
+  import GeoIP
 
   if len(sys.argv) > 1:
+
+    gi = GeoIP.open("/usr/local/share/GeoIP/GeoIPASNum.dat",GeoIP.GEOIP_STANDARD)
+
     # URL of measurement to examine
     url = sys.argv[1]
     # Pull in the data from the server
@@ -33,12 +37,14 @@ if __name__ == "__main__":
           from_val = "*"
           rtt_val = False
           ttl_val = False
+          gir = False
 
           if data[index]["result"][resultindex]["result"][resultrttindex].has_key("from"):
             from_val = data[index]["result"][resultindex]["result"][resultrttindex]["from"]
+            gir = gi.name_by_addr(from_val)
             rtt_val = data[index]["result"][resultindex]["result"][resultrttindex]["rtt"]
             ttl_val = data[index]["result"][resultindex]["result"][resultrttindex]["ttl"]
-          print "%s: %s ms (%d)" % (from_val, rtt_val, ttl_val),
+          print "%s %s: %s ms (%d)" % (gir, from_val, rtt_val, ttl_val),
         print ""
       print ""
   else:
