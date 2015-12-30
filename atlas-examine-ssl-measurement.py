@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
-# Loads JSON data from:
-# https://atlas.ripe.net/measurements/3196765/
+# Examine RIPE Atlas SSL Measurement Data
 #
-# Iterate results to filter out errors
+# Loads JSON data from URL specified on cmdline:
+# Usage:
+#  ./atlas-examine-ssl-measurement.py <URL>
+#    Where URL is an atlas ripe results api endpoint
 
 if __name__ == "__main__":
   import json
