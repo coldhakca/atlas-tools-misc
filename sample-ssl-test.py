@@ -25,8 +25,9 @@ for index in range(len(data)):        # Iterate thru results
     if data[index].has_key("cert"):     # If result has a cert
       for certindex in range(len(data[index]["cert"])):   # iterate thru certs
         # print cert components
+        print "", certindex
         cert = data[index]["cert"][certindex]
         x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
         print "  CertData: ", x509.get_subject().get_components()
-	print "  SHA1:     ", x509.digest("sha1")
-	print "  SHA256:   ", x509.digest("sha256")
+        print "  SHA1:     ", x509.digest("sha1")
+        print "  SHA256:   ", x509.digest("sha256")
