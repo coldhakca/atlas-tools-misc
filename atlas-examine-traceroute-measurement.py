@@ -41,11 +41,11 @@ if __name__ == "__main__":
 
           if data[index]["result"][resultindex]["result"][resultrttindex].has_key("from"):
             from_val = data[index]["result"][resultindex]["result"][resultrttindex]["from"]
-            gir = gi.name_by_addr(from_val)
+            asn_val = gi.name_by_addr(from_val)
             rtt_val = data[index]["result"][resultindex]["result"][resultrttindex]["rtt"]
             ttl_val = data[index]["result"][resultindex]["result"][resultrttindex]["ttl"]
-          print "%s %s: %s ms (%d)" % (gir, from_val, rtt_val, ttl_val),
-        print ""
+          print "%s: %s ms (%d)" % (from_val, rtt_val, ttl_val),
+        print "", asn_val, ""
       print ""
   else:
     print "Usage:"
