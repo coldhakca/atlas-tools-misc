@@ -13,6 +13,7 @@ if __name__ == "__main__":
   import OpenSSL
   import sys
   import GeoIP
+  from dns import resolver,reversename
 
   if len(sys.argv) > 1:
 
@@ -37,12 +38,15 @@ if __name__ == "__main__":
           from_val = "*"
           rtt_val = False
           ttl_val = False
-          gir = False
+          asn_val = False
 
           if data[index]["result"][resultindex]["result"][resultrttindex].has_key("from"):
             from_val = data[index]["result"][resultindex]["result"][resultrttindex]["from"]
+            addr=reversename.from_address(from_val)
             asn_val = gi.name_by_addr(from_val)
+          if data[index]["result"][resultindex]["result"][resultrttindex].has_key("rtt"):
             rtt_val = data[index]["result"][resultindex]["result"][resultrttindex]["rtt"]
+          if data[index]["result"][resultindex]["result"][resultrttindex].has_key("ttl"):
             ttl_val = data[index]["result"][resultindex]["result"][resultrttindex]["ttl"]
           print "%s: %s ms (%d)" % (from_val, rtt_val, ttl_val),
         print "", asn_val, ""
