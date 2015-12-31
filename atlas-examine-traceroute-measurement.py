@@ -32,22 +32,25 @@ if __name__ == "__main__":
 
       for resultindex in range(len(data[index]["result"])):
         print "%d" % resultindex,
-        for resultrttindex in range(len(data[index]["result"][resultindex]["result"])):
-          #print data[index]["result"][resultindex]["result"][resultrttindex]
-          from_val = "*"
-          rtt_val = False
-          ttl_val = False
-          asn_val = False
+        if data[index]["result"][resultindex].has_key("error"):
+          print data[index]["result"][resultindex]["error"]
+        else:
+          for resultrttindex in range(len(data[index]["result"][resultindex]["result"])):
+            #print data[index]["result"][resultindex]["result"][resultrttindex]
+            from_val = "*"
+            rtt_val = False
+            ttl_val = False
+            asn_val = False
 
-          if data[index]["result"][resultindex]["result"][resultrttindex].has_key("from"):
-            from_val = data[index]["result"][resultindex]["result"][resultrttindex]["from"]
-            asn_val = gi.name_by_addr(from_val)
-          if data[index]["result"][resultindex]["result"][resultrttindex].has_key("rtt"):
-            rtt_val = data[index]["result"][resultindex]["result"][resultrttindex]["rtt"]
-          if data[index]["result"][resultindex]["result"][resultrttindex].has_key("ttl"):
-            ttl_val = data[index]["result"][resultindex]["result"][resultrttindex]["ttl"]
-          print "%s: %s ms (%d)" % (from_val, rtt_val, ttl_val),
-        print "", asn_val, ""
+            if data[index]["result"][resultindex]["result"][resultrttindex].has_key("from"):
+              from_val = data[index]["result"][resultindex]["result"][resultrttindex]["from"]
+              asn_val = gi.name_by_addr(from_val)
+            if data[index]["result"][resultindex]["result"][resultrttindex].has_key("rtt"):
+              rtt_val = data[index]["result"][resultindex]["result"][resultrttindex]["rtt"]
+            if data[index]["result"][resultindex]["result"][resultrttindex].has_key("ttl"):
+              ttl_val = data[index]["result"][resultindex]["result"][resultrttindex]["ttl"]
+            print "%s: %s ms (%d)" % (from_val, rtt_val, ttl_val),
+          print "", asn_val, ""
       print ""
   else:
     print "Usage:"
