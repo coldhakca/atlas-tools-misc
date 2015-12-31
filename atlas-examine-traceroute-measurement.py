@@ -30,6 +30,7 @@ if __name__ == "__main__":
       if data[index].has_key("dst_addr"):
         print "Dest:     ", data[index]["dst_addr"]
       print "Probe ID: ", data[index]["prb_id"]
+      print "Type:     ", data[index]["msm_name"]
       print "Proto:    ", data[index]["proto"]
 
       for resultindex in range(len(data[index]["result"])):
