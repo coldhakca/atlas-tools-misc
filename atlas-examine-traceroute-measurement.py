@@ -13,10 +13,9 @@ if __name__ == "__main__":
   import OpenSSL
   import sys
   import GeoIP
+  from AtlasUtils import *
 
   if len(sys.argv) > 1:
-
-    gi = GeoIP.open("/usr/local/share/GeoIP/GeoIPASNum.dat",GeoIP.GEOIP_STANDARD)
 
     # URL of measurement to examine
     url = sys.argv[1]
@@ -24,6 +23,11 @@ if __name__ == "__main__":
     response = urllib.urlopen(url)
     # Load the JSON
     data = json.loads(response.read())
+
+    if is_valid_ipv4(data[0]["from"]):
+      gi = GeoIP.open("/usr/local/share/GeoIP/GeoIPASNum.dat",GeoIP.GEOIP_STANDARD)
+    elif is_valid_ipv6(data[0]["from"]):
+      gi = GeoIP.open("/usr/local/share/GeoIP/GeoIPASNumv6.dat",GeoIP.GEOIP_STANDARD)
 
     for index in range(len(data)):        # Iterate thru results
       print "Source:   ", data[index]["from"]
@@ -47,7 +51,11 @@ if __name__ == "__main__":
 
             if data[index]["result"][resultindex]["result"][resultrttindex].has_key("from"):
               from_val = data[index]["result"][resultindex]["result"][resultrttindex]["from"]
-              asn_val = gi.name_by_addr(from_val)
+              if is_valid_ipv4(from_val):
+                asn_val = gi.name_by_addr(from_val)
+              elif is_valid_ipv6(from_val):
+                asn_val = gi.name_by_addr_v6(from_val)
+
             if data[index]["result"][resultindex]["result"][resultrttindex].has_key("rtt"):
               rtt_val = data[index]["result"][resultindex]["result"][resultrttindex]["rtt"]
             if data[index]["result"][resultindex]["result"][resultrttindex].has_key("ttl"):
