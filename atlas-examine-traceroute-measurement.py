@@ -50,7 +50,7 @@ if __name__ == "__main__":
             if data[index]["result"][resultindex]["result"][resultrttindex].has_key("ttl"):
               ttl_val = data[index]["result"][resultindex]["result"][resultrttindex]["ttl"]
             print "%s: %s ms (%d)" % (from_val, rtt_val, ttl_val),
-          print "", asn_val, ""
+        print "", asn_val, ""
       print ""
   else:
     print "Usage:"
