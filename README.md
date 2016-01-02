@@ -1,6 +1,6 @@
-# atlas-tools-misc
+# atlas_tools
 
-misc tools that use data from RIPE atlas
+Misc CLI tools that use data from RIPE atlas
 
 ## tools and usage
 
