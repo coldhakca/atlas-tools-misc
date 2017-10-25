@@ -2,7 +2,10 @@
 
 Misc CLI tools that use data from RIPE atlas. 
 
-Note: These will likely be rewritten as a [ripe-atlas-tools renderer](http://ripe-atlas-tools.readthedocs.org/en/master/plugins.html).
+Note: These will likely be rewritten as a [ripe-atlas-tools renderer](http://ripe-atlas-tools.readthedocs.org/en/master/plugins.html). This still hasn't happened (2017).
+
+** Abandoned **
+
 
 ## tools and usage
 
